@@ -2,14 +2,15 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import variables,descriptive,inference,nonparametric,probability,hypothesis,sampling
 
+import os
 
 app = FastAPI(title="Estadística Didáctica API")
 
+
+origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
+
 # Configuración CORS (para que Next.js hable con Python)
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+origins = origins_str.split(",")
 
 app.add_middleware(
     CORSMiddleware,
