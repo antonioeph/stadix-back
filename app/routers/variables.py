@@ -13,8 +13,7 @@ async def analyze_variables(payload: AnalysisRequest):
     if result["type"] == "error":
         raise HTTPException(status_code=400, detail=result["message"])
 
-    # 2. Construimos la respuesta educativa (Didáctica)
-    # Esto es lo que hace a tu app diferente de Excel
+
     educ_context = EducationalContext(explanation="", suggested_charts=[])
     
     if result["type"] == "quantitative":
